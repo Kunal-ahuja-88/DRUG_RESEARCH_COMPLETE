@@ -6,7 +6,7 @@ import mongoose from "mongoose";
 import MoleculeGenerationHistory from "../database/models/molecule-generation.model";
 
 export async function createMolecularGenerationHistory(
-  payload: MolecularGenerationHistoryType,
+  payload: MoleculeGenerationHistoryType,
   userId: string
 ) {
   try {
