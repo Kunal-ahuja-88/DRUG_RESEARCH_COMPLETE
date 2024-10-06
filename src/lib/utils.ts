@@ -1,16 +1,16 @@
-export const handleError = (error : unknown) => {
-    if(error instanceof Error) {
-        console.error(error.message);
-        throw new Error(`Error : ${error.message}`)
+export const handleError = (error: unknown) => {
+    if (error instanceof Error) {
+      console.error(error.message);
+      throw new Error(`Error: ${error.message}`);
+    } else if (typeof error === "string") {
+      console.error(error);
+      throw new Error(`Error: ${error}`);
+    } else {
+      console.error(error);
+      throw new Error(`Unknown error: ${JSON.stringify(error)}`);
     }
-    else if(typeof error === 'string') {
-             console.log(error)
-    }
-    else {
-        console.log(error);
-        throw new Error(`Unknown Error ; ${JSON.stringify(error)}`)
-    }
-};
+  };
+  
 
 export const resizeBase64Img = (
     // eslint-disable-next-line @typescript-eslint/no-explicit-any

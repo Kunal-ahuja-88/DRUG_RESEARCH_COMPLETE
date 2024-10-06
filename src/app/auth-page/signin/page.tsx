@@ -5,7 +5,7 @@ import Link from "next/link";
 import { LoaderCircle, LockIcon, MailIcon } from "lucide-react";
 import DefaultLayout from "@/components/Layouts/DefaultLayout";
 import ComponentHeader from "@/components/ComponentHeader/ComponentHeader";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
 
 const SignIn: React.FC = () => {
@@ -50,9 +50,11 @@ const SignIn: React.FC = () => {
     }
   };
 
+  
   return (
     <DefaultLayout>
       <ComponentHeader pageName="Sign In" />
+
       <div className="rounded-lg border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
         <div className="flex flex-wrap items-center">
           <div className="mx-auto w-full xl:w-4/6">
@@ -105,7 +107,7 @@ const SignIn: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="mb-6">
+                <div className="mb-5">
                   <button
                     type="submit"
                     className="w-full cursor-pointer rounded-lg border border-primary bg-primary p-4 text-white transition hover:bg-opacity-90"
@@ -121,11 +123,12 @@ const SignIn: React.FC = () => {
                     )}
                   </button>
                 </div>
+
                 <div className="mt-6 text-center">
                   <p>
-                    Do not have an account?{" "}
-                    <Link href={"/auth-page/signup"} className="text-primary">
-                      Sign up
+                    Don’t have an account?{" "}
+                    <Link href="/auth-page/signup" className="text-primary">
+                      Sign Up
                     </Link>
                   </p>
                   <p>
