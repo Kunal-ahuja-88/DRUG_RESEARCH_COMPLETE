@@ -4,12 +4,34 @@
 import React , {useState , useLayoutEffect} from "react"
 import Sidebar from "@/components/Sidebar";
 import Header from "@/components/Header";
+import { useSession } from "next-auth/react";
+import { useRouter, usePathname } from "next/navigation";
+
 export default function DefaultLayout({
     children ,
 }: {
     children : React.ReactNode
 }) {
     const [sidebarOpen,setSidebarOpen] = useState(false)
+
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const {data :session,status} = useSession()
+    const router = useRouter()
+    const pathname = usePathname()
+
+    const publicRoutes = [
+    "/auth-page/signin",
+    "/auth-page/signup",
+    "/verify-email",
+    "/reset-password",
+    "/forget-password"
+    ];
+
+    useLayoutEffect(() => {
+        if(status === "unauthenticated" && !publicRoutes.includes(pathname))  {
+            router.push("/auth-page/signin")
+        }
+    })
 
     return (
         <>

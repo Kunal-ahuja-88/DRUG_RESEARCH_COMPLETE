@@ -6,12 +6,20 @@ import { useRouter } from "next/navigation"
 import Image from "next/image"
 import Link from "next/link"
 import ClickOutside from "../ClickOutside"
+import { useUser } from "@/app/context/UserContext"
+import { signOut } from "next-auth/react"
 
 
 const DropdownUser = () => {
     const [dropdownOpen,setDropdownOpen] = useState(false)
+    const user = useUser()
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const router = useRouter()
+     
+   const handleLogout = async() => {
+    await signOut({redirect:false});
+    router.push("/auth/page/signin")
+   }
 
     return (
         <ClickOutside onClick={() => setDropdownOpen(false)} className="relative">
@@ -22,16 +30,16 @@ const DropdownUser = () => {
           >
              <span className="hidden text-right lg:block">
           <span className="block text-sm font-medium text-black dark:text-white">
-            {"Max Charles"}
+          {user.firstName} {user.lastName}
           </span>
-          <span className="block text-xs">Drug Researcher</span>
+          <span className="block text-xs">{user.jobTitle}</span>
         </span>
 
         <span className="h-11 w-11 rounded-full">
           <Image
             width={80}
             height={60}
-            src="/images/user/user-01.png"
+            src={user.photo}
             className="rounded-full"
             style={{
               width: "auto",
@@ -67,7 +75,7 @@ const DropdownUser = () => {
             </li>
           </ul>
           <button
-           // onClick={handleLogout}
+           onClick={handleLogout}
             className="flex items-center gap-3.5 px-6 py-4 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base"
           >
             <LogOut />
