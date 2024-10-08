@@ -6,7 +6,7 @@ import DarkModeSwitcher from "@/components/Header/DarkModeSwitcher";
 import { Edit, MailIcon, CameraIcon, User } from "lucide-react";
 import { useSession } from "next-auth/react";
 import { getUserByEmail, updateUser } from "@/lib/actions/user.actions";
-import { trackDynamicDataAccessed } from "next/dist/server/app-render/dynamic-rendering";
+
 
 const Settings = () => {
   const { data: session } = useSession();
@@ -19,6 +19,7 @@ const Settings = () => {
     id: "",
   });
   const [imageFile, setImageFile] = useState<File | null>(null);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [errors, setErrors] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
@@ -113,6 +114,7 @@ const Settings = () => {
   };
 
   const handleFileChange = (
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     e : any
   ) =>  {
     if(e.target.files && e.target.files[0]) {
@@ -128,7 +130,6 @@ const Settings = () => {
   return (
     <DefaultLayout>
       <div className="mx-auto max-w-270">
-        <Breadcrumb pageName="Settings" />
         <div className="mb-4 flex flex-row items-center  space-x-2">
           <span>Toggle Theme</span>
           <DarkModeSwitcher />
