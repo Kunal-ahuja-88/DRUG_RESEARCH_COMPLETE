@@ -1,6 +1,10 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import MoleculeStructure from "../MoleculeStructure/index";
+import dynamic from "next/dynamic";
+
+const MoleculeStructure = dynamic(() => import("../MoleculeStructure"), {
+  ssr: false, // Disable SSR
+});
 
 const moleculeBank = [
   {

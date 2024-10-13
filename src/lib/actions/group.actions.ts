@@ -37,8 +37,8 @@ export async function addMemberToGroup(groupId: string, userId: string) {
     const group = await Group.findById(groupId);
     if (!group) throw new Error("Group doesnt exist");
 
-    if (!group.members.includes(groupId)) {
-      group.members.push(groupId);
+    if (!group.members.includes(userId)) {
+      group.members.push(userId);
       await group.save();
     }
     return JSON.parse(JSON.stringify(group));
