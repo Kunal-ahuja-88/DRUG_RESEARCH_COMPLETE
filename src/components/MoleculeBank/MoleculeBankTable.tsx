@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 
 const MoleculeStructure = dynamic(() => import("../MoleculeStructure"), {
-  ssr: false, // Disable SSR
+  ssr: false, 
 });
 
 const moleculeBank = [
